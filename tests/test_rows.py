@@ -65,6 +65,14 @@ class RaggedRowsTests(unittest.TestCase):
                 self.assertEqual(output, "empty file (no rows / no header)\n")
                 self.assertEqual(warning, "")
 
+    def test_duplicate_headers_keep_existing_last_field_behavior(self):
+        status, output, warning = self.scan_csv("value,value\nignored,1\nignored,3\n")
+        self.assertEqual(status, 0)
+        self.assertTrue(output.startswith("2 rows, 1 columns\n"))
+        self.assertEqual(output.count("• value"), 1)
+        self.assertIn("numeric: min=1.0 max=3.0 mean=2.00", output)
+        self.assertEqual(warning, "")
+
 
 if __name__ == "__main__":
     unittest.main()
