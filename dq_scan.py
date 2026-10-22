@@ -9,7 +9,7 @@ from collections import Counter
 def scan(path, delim=","):
     with open(path, newline="", encoding="utf-8", errors="replace") as f:
         reader = csv.DictReader(f, delimiter=delim)
-        cols = reader.fieldnames
+        cols = list(dict.fromkeys(reader.fieldnames or []))
         rows = list(reader)
     if not rows:
         print("empty file (no rows / no header)")
