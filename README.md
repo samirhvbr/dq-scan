@@ -25,6 +25,9 @@ python3 dq_scan.py path/to/export.csv
     top: [('EUR', 44000), ('USD', 800), ('GBP', 223)]
 ```
 
+Input files that cannot be opened or read, and CSV parser errors, produce a
+concise error on stderr and a non-zero exit status.
+
 ## Why
 
 pandas takes 2 seconds and 300 MB to tell me a column is 70% null. This takes
