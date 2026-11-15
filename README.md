@@ -30,6 +30,9 @@ the header's columns, ignores extra fields, and counts missing fields as nulls.
 
 ## Why
 
+Rows are processed incrementally. Exact unique counts and top values still
+require memory proportional to the number of distinct values in each column.
+
 pandas takes 2 seconds and 300 MB to tell me a column is 70% null. This takes
 150 milliseconds and tells me the same thing. When you open 20 exports a day,
 that difference is the difference between doing it and skipping it.
